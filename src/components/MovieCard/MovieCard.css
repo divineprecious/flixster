@@ -1,0 +1,10 @@
+.movie-card 
+{
+    border: 1px solid black
+}
+
+.movie-card  img 
+{
+    max-height: 350px;
+    width: 100%;
+}

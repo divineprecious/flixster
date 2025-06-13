@@ -1,16 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
 .App {
   text-align: center;
+  font-family: 'Lexend';
+  display: flex;
+  flex-direction: column;
 }
 
-.App-header {
+.header {
   background-color: #282c34;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   color: white;
   padding: 20px;
 }
+
+.search-bar 
+{
+  display: flex;
+  gap: 0.5rem
+}
+
+.search-bar input
+{
+  padding: 0.4rem;
+}
+
 
 @media (max-width: 600px) {
   .movie-card {
