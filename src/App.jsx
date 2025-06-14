@@ -3,10 +3,16 @@ import './App.css';
 import MovieList from './components/MovieList/MovieList';
 
 const App = () => {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [inputValue, setInputValue] = useState('');
+  const [searchQuery, setSearchQuery] = useState('')
 
   function handleSearchChange(event) {
-    setSearchQuery(event.target.value);
+    setInputValue(event.target.value);
+  }
+
+  function handleSearch(event) {
+    event.preventDefault();
+    setSearchQuery(inputValue);
     console.log(searchQuery);
   }
 
@@ -14,13 +20,13 @@ const App = () => {
     <div className="App">
       <header className='header'>
           <h1>Flixster</h1>
-          <form className='search-bar'>
-            <input type="text" value={searchQuery} onChange={handleSearchChange} placeholder='Search' />
-            <button>Search</button>
-            <button>Clear</button>
+          <form className='search-bar' onSubmit={handleSearch}>
+            <input type="text" value={inputValue} onChange={handleSearchChange} placeholder='Search' />
+            <button type="submit">Search</button>
+            <button type="button">Clear</button>
           </form>
         </header>
-      <MovieList />
+      <MovieList search={searchQuery}/>
     </div>
   )
 }
