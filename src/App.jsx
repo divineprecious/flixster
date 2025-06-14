@@ -13,7 +13,11 @@ const App = () => {
   function handleSearch(event) {
     event.preventDefault();
     setSearchQuery(inputValue);
-    console.log(searchQuery);
+  }
+
+  function handleClear() {
+    setInputValue('');
+    setSearchQuery('');
   }
 
   return (
@@ -23,7 +27,7 @@ const App = () => {
           <form className='search-bar' onSubmit={handleSearch}>
             <input type="text" value={inputValue} onChange={handleSearchChange} placeholder='Search' />
             <button type="submit">Search</button>
-            <button type="button">Clear</button>
+            <button type="button" onClick={handleClear}>Clear</button>
           </form>
         </header>
       <MovieList search={searchQuery}/>

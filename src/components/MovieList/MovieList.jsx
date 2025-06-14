@@ -16,26 +16,17 @@ export default function MovieList({search}) {
     const [page, setPage] = useState(1);
 
     useEffect(() => {
-        console.log("Search is: ", {search});
-    }, [search]);
-
-    useEffect(() => {
         async function fetchMovies() {
             try {
                 if (search === ''){
                     const {data} = await axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&page=${page}`);
-                    setMovies([...new Set([...movies, ...data.results])]);
+                    (page === 1) ? setMovies(data.results) : setMovies([...new Set([...movies, ...data.results])]);
                 //Search path
                 } else {
                     const {data} = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${search}&api_key=${key}&page=${page}`);
-                    if (page === 1){
-                        setMovies(data.results);
-                    } else {
-                        setMovies([...new Set([...movies, ...data.results])]);
-                    }
-            
-                console.log(data.results);
+                    (page === 1) ? setMovies(data.results) : setMovies([...new Set([...movies, ...data.results])]);        
                 }
+                console.log(movies);
             } catch (err) {
                 console.error("Error fetching list: ", err);
             }
@@ -46,22 +37,24 @@ export default function MovieList({search}) {
 
     useEffect(() => {
         setPage(1);
+        setMovies([]);
     }, [search]);
+
     return (
     <>
     <div className="movie-list">
         {movies.map((movie) => (
             <MovieCard
-            key={movie.title}
+            key={movie.id}
             title={movie.title}
             image={movie.poster_path}
             rating={movie.vote_average}
             />
         ))}
     </div> 
-    <button className="loadBtn" onClick={ () => {
+    { (search === '') && <button className="loadBtn" onClick={ () => {
         setPage(page + 1);
-    }}>Load More</button>
+    }}>Load More</button>}
     </>
     )
 }
