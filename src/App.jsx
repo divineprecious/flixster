@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import MovieList from './components/MovieList/MovieList';
+import MovieModal from './components/MovieModal/MovieModal';
 
 const App = () => {
   const [inputValue, setInputValue] = useState('');
@@ -29,8 +30,10 @@ const App = () => {
             <button type="submit">Search</button>
             <button type="button" onClick={handleClear}>Clear</button>
           </form>
-        </header>
-      <MovieList search={searchQuery}/>
+      </header>
+      <main>
+        {<MovieList search={searchQuery}/>}
+      </main>
     </div>
   )
 }
