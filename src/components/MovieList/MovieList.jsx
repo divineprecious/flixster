@@ -9,7 +9,6 @@ import "./MovieList.css";
 //Note to self: Work on tablet and phone media queries
 
 
-
 export default function MovieList({search, sort}) {
 
 

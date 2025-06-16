@@ -51,7 +51,8 @@ export default function MovieModal({title, release, onClose, backdrop, id})
                 <p><strong>Overview:</strong> {details.overview}</p>
                 <p><strong>Genres:</strong> {getGenres(details.genres)}</p>
                 <iframe
-                    src={getTrailer()}>
+                    src={getTrailer()}
+                    allowFullScreen>
                 </iframe>
                 <button onClick={onClose}>Close</button>
             </div>
