@@ -2,7 +2,6 @@ import './MovieModal.css'
 
 export default function MovieModal({title, release, overview, onClose, genres})
 {
-    console.log(genres);
     return (
         <div className='modal-overlay'>
             <div className='modal-content'>
