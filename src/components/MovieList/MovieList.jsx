@@ -6,20 +6,14 @@ import "./MovieList.css";
 
 //Note to Self: Handle condition when we run out of movies to run
 
-//Note to self: Handle fallback for images with no paths
+//Note to self: Work on tablet and phone media queries
 
-//Note to self: Work on tablet media queries
 
-//Note to self: Work on genre ids
 
-//Note to self: Add runtime info for modal
-
-export default function MovieList({search}) {
+export default function MovieList({search, sort}) {
 
 
     const key = import.meta.env.VITE_API_KEY;
-
-    const [genreDict, setGenreDict] = useState({});
 
     const [movies, setMovies] = useState([]);
 
@@ -28,34 +22,41 @@ export default function MovieList({search}) {
     useEffect(() => {
         async function fetchMovies() {
             try {
-                const response = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${key}&language=en-US`)
-                const genres = response.data.genres;
-                const dict = {};
-                for (const genre of genres){
-                    dict[genre.id] = genre.name;
-                }   
-                setGenreDict(dict);
-                if (search === ''){
+                if (sort == "popularity") {
+                    const {data} = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${key}&page=${page}&sort_by=popularity.desc`);   
+                    setMovies(data.results);
+                }
+                else if (sort == "release"){
+                    const {data} = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${key}&page=${page}&sort_by=primary_release_date.desc`);   
+                    setMovies(data.results);
+                }
+                else if (sort == "rating"){
+                    const {data} = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${key}&page=${page}&sort_by=vote_average.desc&vote_count.gte=500`);   
+                    setMovies(data.results);
+                }
+                else if ((search === '')){
                     const {data} = await axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&page=${page}`);
-                    (page === 1) ? setMovies(data.results) : setMovies([...new Set([...movies, ...data.results])]);
+                    (page === 1) ? setMovies(data.results) : setMovies(prevMovies => [...new Set([...prevMovies, ...data.results])]);
                 //Search path
                 } else {
                     const {data} = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${search}&api_key=${key}&page=${page}`);
-                    (page === 1) ? setMovies(data.results) : setMovies([...new Set([...movies, ...data.results])]);        
+                    setMovies(data.results);
                 }
             } catch (err) {
                 console.error("Error fetching list: ", err);
             }
         };
         fetchMovies();
-    }, [page, search]);
+    }, [page, search, sort]);
 
 
     useEffect(() => {
         setPage(1);
         setMovies([]);
-    }, [search]);
+    }, [search, sort]);
 
+
+    console.log(movies);
     return (
     <>
     <div className="movie-list">
@@ -64,10 +65,10 @@ export default function MovieList({search}) {
             key={movie.id}
             title={movie.title}
             image={movie.poster_path}
-            rating={movie.vote_average}
+            rating={movie.vote_average.toFixed(1)}
             release={movie.release_date}
-            overview={movie.overview}
-            genres={movie.genre_ids.map(id => genreDict[id]).join(", ")}
+            backdrop={movie.backdrop_path}
+            id={movie.id}
             />
         ))}
     </div> 

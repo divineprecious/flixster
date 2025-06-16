@@ -1,20 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 .App {
+  font-family: "Inter", sans-serif;
   text-align: center;
-  font-family: 'Lexend';
   display: flex;
   flex-direction: column;
+  background-color: #17153B;
 }
 
 .header {
-  background-color: #282c34;
+  background-color: #1E1C47;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   color: white;
   padding: 20px;
+  gap: 1.5rem;
+}
+
+.movie-controls 
+{
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .search-bar 
@@ -26,6 +37,16 @@
 .search-bar input
 {
   padding: 0.4rem;
+}
+
+.sort-pick 
+{
+  padding: 0.2rem;
+}
+
+footer {
+  background-color: #1E1C47;
+  color: aliceblue;
 }
 
 

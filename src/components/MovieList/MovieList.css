@@ -3,10 +3,11 @@
     margin-top: 2rem;
     display: grid;
     gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     margin-left: 3rem;
     margin-right: 3rem;
     margin-bottom: 3.5rem;
+    color: aliceblue;
 }
 
 .loadBtn 

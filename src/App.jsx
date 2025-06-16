@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import MovieList from './components/MovieList/MovieList';
-import MovieModal from './components/MovieModal/MovieModal';
 
 const App = () => {
   const [inputValue, setInputValue] = useState('');
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedSort, setSelectedSort] = useState('');
 
   function handleSearchChange(event) {
     setInputValue(event.target.value);
@@ -21,19 +21,34 @@ const App = () => {
     setSearchQuery('');
   }
 
+  function handleSortChange(event) {
+    setSelectedSort(event.target.value);
+  }
+
   return (
     <div className="App">
       <header className='header'>
           <h1>Flixster</h1>
-          <form className='search-bar' onSubmit={handleSearch}>
-            <input type="text" value={inputValue} onChange={handleSearchChange} placeholder='Search' />
-            <button type="submit">Search</button>
-            <button type="button" onClick={handleClear}>Clear</button>
-          </form>
       </header>
       <main>
-        {<MovieList search={searchQuery}/>}
+        <section className="movie-controls">
+          <form className='search-bar' onSubmit={handleSearch}>
+              <input type="text" value={inputValue} onChange={handleSearchChange} placeholder='Search' />
+              <button type="submit">Search</button>
+              <button type="button" onClick={handleClear}>Clear</button>
+          </form>
+          <select className="sort-pick" onChange={handleSortChange}>
+              <option value="">Sort by</option>
+              <option value="popularity">Popularity Descending</option>
+              <option value="release">Release Date Descending</option>
+              <option value="rating">Rating Descending</option>
+          </select>
+        </section>
+        {<MovieList search={searchQuery} sort={selectedSort}/>}
       </main>
+      <footer>
+        <h3>© 2025 Flixster</h3>
+      </footer>
     </div>
   )
 }
