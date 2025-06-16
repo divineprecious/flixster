@@ -16,17 +16,31 @@ export default function MovieModal({title, release, onClose, backdrop, id})
         return genres.map(genre => genre.name).join(", ");
     }
 
-    const [details, setDetails] = useState([])
+    function getTrailer(link = "") {
+        for (const video of videos){
+            if (video.type == "Trailer" && video.site == "YouTube"){
+                let link = `https://www.youtube.com/embed/${video.key}`;
+                return link;
+            }
+        }
+    }
+
+    const [details, setDetails] = useState([]);
+
+    const [videos, setVideos] = useState([]);
 
     useEffect(() => {
         async function getDetails() {
             const {data} = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}`);
             setDetails(data);
+
+            const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${key}`);
+            setVideos(response.data.results);
+            
         }
         getDetails();
     }, [])
 
-    {console.log(details)};
     return (
         <div className='modal-overlay'>
             <div className='modal-content'>
@@ -36,6 +50,9 @@ export default function MovieModal({title, release, onClose, backdrop, id})
                 <p><strong>Release Date:</strong> {date}</p>
                 <p><strong>Overview:</strong> {details.overview}</p>
                 <p><strong>Genres:</strong> {getGenres(details.genres)}</p>
+                <iframe
+                    src={getTrailer()}>
+                </iframe>
                 <button onClick={onClose}>Close</button>
             </div>
         </div>
