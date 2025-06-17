@@ -16,8 +16,8 @@ export default function MovieList({search, sort}) {
     useEffect(() => {
         async function fetchMovies() {
             try {
-                if (sort == "popularity") {
-                    const {data} = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${key}&page=${page}&sort_by=popularity.desc`);   
+                if (sort == "title") {
+                    const {data} = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${key}&page=${page}&sort_by=title.asc`);   
                     setMovies(data.results);
                 }
                 else if (sort == "release"){

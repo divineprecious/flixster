@@ -39,7 +39,7 @@ const App = () => {
           </form>
           <select className="sort-pick" onChange={handleSortChange}>
               <option value="">Now Playing</option>
-              <option value="popularity">Popularity Descending</option>
+              <option value="title">Title (A-Z)</option>
               <option value="release">Release Date Descending</option>
               <option value="rating">Rating Descending</option>
           </select>
