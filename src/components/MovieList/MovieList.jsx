@@ -51,8 +51,6 @@ export default function MovieList({search, sort}) {
         setMovies([]);
     }, [search, sort]);
 
-
-    console.log(movies);
     return (
     <>
     <div className="movie-list">
