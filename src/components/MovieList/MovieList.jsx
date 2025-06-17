@@ -4,8 +4,6 @@ import axios from "axios";
 
 import "./MovieList.css";
 
-//Note to Self: Handle condition when we run out of movies to run
-
 export default function MovieList({search, sort}) {
 
 
