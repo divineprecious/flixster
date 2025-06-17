@@ -31,12 +31,16 @@ export default function MovieModal({title, release, onClose, backdrop, id})
 
     useEffect(() => {
         async function getDetails() {
-            const {data} = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}`);
-            setDetails(data);
+            try {
+                const {data} = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}`);
+                setDetails(data);
 
-            const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${key}`);
-            setVideos(response.data.results);
-            
+                const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${key}`);
+                setVideos(response.data.results);
+            }
+            catch (err) {
+                console.error("Error fetching list: ", err);
+            }
         }
         getDetails();
     }, [])
