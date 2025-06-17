@@ -31,7 +31,8 @@
 .search-bar 
 {
   display: flex;
-  gap: 0.5rem
+  gap: 0.5rem;
+  margin-bottom: 0;
 }
 
 .search-bar input
@@ -39,10 +40,16 @@
   padding: 0.4rem;
 }
 
+.search-bar button 
+{
+  border-radius: 0.5rem;
+}
+
 .sort-pick 
 {
   padding: 0.2rem;
   height: 2rem;
+  border-radius: 1rem;
 }
 
 footer {

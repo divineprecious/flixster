@@ -1,8 +1,22 @@
+.movie-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;  
+    text-align: center;
+}
+
 .movie-card  img 
 {
     max-height: 350px;
     width: 100%;
     border-radius: 1rem;
+}
+
+.icons
+{
+    justify-content: center;
+    display: flex;
+    gap: 0.5rem;
 }
 
 @media screen and (max-width: 600px) {
