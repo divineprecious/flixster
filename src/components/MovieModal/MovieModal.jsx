@@ -18,8 +18,8 @@ export default function MovieModal({title, release, onClose, backdrop, id})
 
     function getTrailer(link = "") {
         for (const video of videos){
-            if (video.type == "Trailer" && video.site == "YouTube"){
-                let link = `https://www.youtube.com/embed/${video.key}`;
+            if (video.type === "Trailer" && video.site === "YouTube"){
+                const link = `https://www.youtube.com/embed/${video.key}`;
                 return link;
             }
         }
@@ -42,8 +42,8 @@ export default function MovieModal({title, release, onClose, backdrop, id})
     }, [])
 
     return (
-        <div className='modal-overlay'>
-            <div className='modal-content'>
+        <div className='modal-overlay' onClick={onClose}>
+            <div className='modal-content' onClick={(e) => e.stopPropagation()}>
                 <h2>{title}</h2>
                 <p><strong>Runtime: </strong>{details.runtime} minutes</p>
                 <img src={`https://image.tmdb.org/t/p/w500/${backdrop}`} alt={title} />

@@ -28,3 +28,25 @@ iframe
     margin: 0 auto;
     margin-bottom: 2rem;
 }
+
+@media (max-width: 600px) {
+  .modal-content img 
+  {
+    max-width: 250px;
+  }
+
+  .modal-content iframe 
+  {
+    max-width: 250px;
+  }
+
+  .modal-content p 
+  {
+    font-size: small;
+  }
+
+  .modal-content h2 
+  {
+    font-size: medium;
+  }
+}

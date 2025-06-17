@@ -6,9 +6,6 @@ import "./MovieList.css";
 
 //Note to Self: Handle condition when we run out of movies to run
 
-//Note to self: Work on tablet and phone media queries
-
-
 export default function MovieList({search, sort}) {
 
 
@@ -38,7 +35,7 @@ export default function MovieList({search, sort}) {
                     (page === 1) ? setMovies(data.results) : setMovies(prevMovies => [...new Set([...prevMovies, ...data.results])]);
                 //Search path
                 } else {
-                    const {data} = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${search}&api_key=${key}&page=${page}`);
+                    const {data} = await axios.get(`https://api.themoviedb.org/3/search/movie?query=${search}&api_key=${key}&page=${page}&include_adult=false`);
                     setMovies(data.results);
                 }
             } catch (err) {

@@ -33,12 +33,12 @@ const App = () => {
       <main>
         <section className="movie-controls">
           <form className='search-bar' onSubmit={handleSearch}>
-              <input type="text" value={inputValue} onChange={handleSearchChange} placeholder='Search' />
+              <input type="text" value={inputValue} onChange={handleSearchChange} placeholder='Search for movies' />
               <button type="submit">Search</button>
               <button type="button" onClick={handleClear}>Clear</button>
           </form>
           <select className="sort-pick" onChange={handleSortChange}>
-              <option value="">Sort by</option>
+              <option value="">Now Playing</option>
               <option value="popularity">Popularity Descending</option>
               <option value="release">Release Date Descending</option>
               <option value="rating">Rating Descending</option>

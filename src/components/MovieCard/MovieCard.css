@@ -3,6 +3,15 @@
     flex-direction: column;
     justify-content: space-between;  
     text-align: center;
+    transition: transform 0.3s ease;
+    user-select: none;
+}
+
+.movie-card:hover 
+{
+    cursor: pointer;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .movie-card  img 

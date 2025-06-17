@@ -19,11 +19,13 @@ export default function MovieCard({title, image, rating, release, backdrop, id})
     const [liked, setLiked] = useState(false);
 
     function handleClick() {
-        setShowModal(true)
+        setShowModal(true);
+        document.body.classList.add('modal-open')
     }
 
     function handleClose() {
         setShowModal(false);
+        document.body.classList.remove('modal-open')
     }
 
     return (
@@ -47,7 +49,7 @@ export default function MovieCard({title, image, rating, release, backdrop, id})
             </div>
             <p onClick={(e) => {
                 e.stopPropagation();
-            }}>	&#11088; {rating}</p>
+            }}> &#11088; {rating}</p>
         </div>
 
         {showModal && (<MovieModal 
