@@ -40,7 +40,7 @@ const App = () => {
           <select className="sort-pick" onChange={handleSortChange}>
               <option value="">Now Playing</option>
               <option value="title">Title (A-Z)</option>
-              <option value="release">Release Date Descending</option>
+              <option value="release">Release Date Ascending</option>
               <option value="rating">Rating Descending</option>
           </select>
         </section>

@@ -21,7 +21,7 @@ export default function MovieList({search, sort}) {
                     setMovies(data.results);
                 }
                 else if (sort == "release"){
-                    const {data} = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${key}&page=${page}&sort_by=primary_release_date.desc`);   
+                    const {data} = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${key}&page=${page}&sort_by=primary_release_date.asc`);   
                     setMovies(data.results);
                 }
                 else if (sort == "rating"){
